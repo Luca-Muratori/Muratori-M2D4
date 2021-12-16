@@ -26,6 +26,51 @@
   <body>
     <script src="./487023959572329_files/jquery-3.5.1.slim.min.js.download" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="./487023959572329_files/bootstrap.bundle.min.js.download" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-  
-
-</body></html>
+        <h1 style="color:grey">List Randomizer</h1>
+        <div>
+             <input type="text" id="Words">
+             <button id="Add" onClick="appendToArray()">Add To List</button>
+             <button id="Shuffle" onClick="shuffleList()">Shuffle List</button>
+               <h3>List</h3>
+               <ul id="list"></ul>
+        </div>
+    <script>
+                var randomList = [];
+          function appendToArray() {
+            var word = document.getElementById("Words").value;
+            randomList.push(word);
+            updateList(randomList);
+            document.getElementById("Words").value = "";
+          }
+          
+          function updateList(wordsArr) {
+            shuffleArr(wordsArr);
+            var list = document.getElementById('list');
+            list.innerHTML = "";
+            for (var i =0; i < wordsArr.length; i++) {
+              var word = wordsArr[i];
+              var li = document.createElement('li');
+              li.innerText = word;
+              list.appendChild(li);
+            }
+          }
+          
+          function shuffleArr(arr) {
+              var j,
+                  x,
+                  i;
+              for (var i = arr.length; i; i--) {
+                  j = Math.floor(Math.random() * i);
+                  x = arr[i - 1];
+                  arr[i - 1] = arr[j];
+                  arr[j] = x;
+              }
+          }
+          
+          function shuffleList() {
+            var list = randomList;
+            updateList(list);
+             }
+    </script>
+  </body>
+</html>
