@@ -26,14 +26,25 @@
   <body>
     <script src="./487023959572329_files/jquery-3.5.1.slim.min.js.download" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="./487023959572329_files/bootstrap.bundle.min.js.download" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
-        <h1 style="color:grey">List Randomizer</h1>
+        
+
+          <!-- Create a list randomizer -->
+          <h1 style="color:grey">List Randomizer</h1>
         <div>
              <input type="text" id="Words">
              <button id="Add" onClick="appendToArray()">Add To List</button>
              <button id="Shuffle" onClick="shuffleList()">Shuffle List</button>
-               <h3>List</h3>
+               <h3>Waiting List</h3>
                <ul id="list"></ul>
         </div>
+
+
+        <!-- Create an input to get the number of teams the user wants to generate. -->
+        <h1>How many team do you want?</h1>
+        <input type="text" id='numberOfTeam'>
+        <button id="Add" onClick="appendToArrayNumber()">team number</button>
+        <h3>Number of teams</h3>
+        <ul id="listNumber"></ul>
     <script>
                 var randomList = [];
           function appendToArray() {
@@ -70,7 +81,42 @@
           function shuffleList() {
             var list = randomList;
             updateList(list);
-             }
+            }
+            
+
+            var randomList1 = [];
+          function appendToArrayNumber() {
+            var word = document.getElementById('numberOfTeam').value;
+            randomList1.push(word);
+            updateList1(randomList1);
+            document.getElementById('numberOfTeam').value = "";
+          }
+          
+          function updateList1(numbArr) {
+            shuffleArr1(numbArr);
+            var list = document.getElementById('listNumber');
+            list.innerHTML = "";
+            for (var i =0; i < numbArr.length; i++) {
+              var word = numbArr[i];
+              var li = document.createElement('li');
+              li.innerText = word;
+              list.appendChild(li);
+            }
+          }
+          
+          function shuffleArr1(arr) {
+              var j,
+                  x,
+                  i;
+              for (var i = arr.length; i; i--) {
+                  j = Math.floor(Math.random() * i);
+                  x = arr[i - 1];
+                  arr[i - 1] = arr[j];
+                  arr[j] = x;
+              }
+          }
+          
+          
     </script>
   </body>
 </html>
